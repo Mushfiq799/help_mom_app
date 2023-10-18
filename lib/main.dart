@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor:
             Colors.white, // Replace with your desired background color
       ),
-      // Use LoginPage as a constructor
     );
   }
 }
