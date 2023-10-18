@@ -4,9 +4,10 @@ import 'package:help_mom_3/components/my_button.dart';
 import 'package:help_mom_3/components/square_tile.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginPage(
+      {super.key, required Color backgroundColor, required AppBar appbar});
 
-  final usernameConrtoller = TextEditingController();
+  final emailConrtoller = TextEditingController();
   final passwordController = TextEditingController();
 
   //sign user in method
@@ -15,16 +16,21 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: SafeArea(
-            child: Center(
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const SizedBox(
               height: 50,
             ),
 
             //logo
-            const Icon(Icons.lock, size: 100),
+            // const Icon(Icons.lock, size: 100),
+            Image.asset(
+              'lib/images/favicon.png',
+              width: 100, // Set the desired width
+              height: 100, // Set the desired height
+            ),
 
             const SizedBox(height: 50),
 
@@ -41,8 +47,8 @@ class LoginPage extends StatelessWidget {
 
             //username textfield
             MyTextField(
-              controller: usernameConrtoller,
-              hintText: 'Username',
+              controller: emailConrtoller,
+              hintText: 'Email',
               obsecuredText: false,
             ),
             const SizedBox(
@@ -51,8 +57,8 @@ class LoginPage extends StatelessWidget {
 
             //password textfield
             MyTextField(
-              controller: usernameConrtoller,
-              hintText: 'password',
+              controller: passwordController,
+              hintText: 'Password',
               obsecuredText: true,
             ),
             const SizedBox(
@@ -62,7 +68,7 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Forgot Password',
@@ -80,53 +86,60 @@ class LoginPage extends StatelessWidget {
             MyButton(
               onTap: signUserIn,
             ),
+            const SizedBox(height: 25),
             //or continue with
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Divider(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Divider(
+                    thickness: 0.5,
+                    color: Colors.grey[400],
+                  )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'Or continue with',
+                        style: TextStyle(color: Colors.grey[700]),
+                      )),
+                  Expanded(
+                    child: Divider(
                       thickness: 0.5,
                       color: Colors.grey[400],
-                    )),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
-                        )),
-                    Expanded(
-                        child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey[400],
-                    )),
-                  ],
-                ))
-          ]),
-        )));
-    //google sign in button
-    // Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: const()
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
 
-    // SquareTile(imagePath: 'lib/images/google.png'),
-    // const SizedBox(width: 25),
-    // )
-    // //not a member ? register now
-    // Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: (
-    //     Text('Not a Member?',
-    //     style: TextStyle: color: Colors.grey[700]),
-    //   ),
-    //     const SizedBox(width: 4),
-    //     const Text(
-    //       'Register Now',
-    //       style :TextStyle(
-    //         color: Colors.blue, fontWeight: FontWeight.bold),
-    //       )
-    //     ,)
-    //   );
+            //google sign in button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                const SquareTile(imagePath: 'lib/images/google.png'),
+                const SizedBox(width: 35),
+              ],
+            ),
+
+            const SizedBox(width: 25),
+            //not a member ? register now
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                'Not a Member?',
+                style: TextStyle(color: Colors.grey[700]),
+              ),
+              const SizedBox(width: 20),
+              const Text(
+                'Register Now',
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              )
+            ])
+          ]),
+        ),
+      ),
+    );
   }
 }
